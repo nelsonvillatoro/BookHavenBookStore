@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haven Bookstore - Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            line-height: 1.6;
+            color: #2E4057;
+            background-color: #F3F3F3;
+        }
+        
+        /* Header */
+        .header {
+            background-color: #2E4057;
+            color: #F9E5CE;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #CF9455;
+        }
+        
+        .search-account {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .search-bar {
+            padding: 0.5rem;
+            border: 1px solid #CF9455;
+            border-radius: 4px;
+        }
+        
+        .cart {
+            background-color: #CF9455;
+            color: #2E4057;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        .nav {
+            background-color: #F9E5CE;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .nav a {
+            color: #2E4057;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .nav a:hover {
+            color: #048A9;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #2E4057;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(46, 64, 87, 0.1);
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            color: #2E4057;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .category-button {
+            display: block;
+            width: 100%;
+            background-color: #F9E5CE;
+            color: #2E4057;
+            padding: 0.8rem;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .category-button:hover {
+            background-color: #CF9455;
+            color: white;
+        }
+        
+        .cart-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #F9E5CE;
+        }
+        
+        .view-cart-btn {
+            display: block;
+            width: 100%;
+            background-color: #048A9;
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .view-cart-btn:hover {
+            background-color: #2E4057;
+        }
+        
+        /* Book Grid */
+        .book-collection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .book-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(46, 64, 87, 0.1);
+            text-align: center;
+        }
+        
+        .book-cover {
+            width: 150px;
+            height: 200px;
+            background-color: #CF9455;
+            margin: 0 auto 1rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .book-title {
+            font-size: 1.2rem;
+            color: #2E4057;
+            margin-bottom: 0.5rem;
+        }
+        
+        .book-author {
+            font-size: 1rem;
+            color: #048A9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .book-description {
+            font-size: 0.9rem;
+            color: #2E4057;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .book-price {
+            font-size: 1.2rem;
+            color: #048A9;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .add-to-cart {
+            background-color: #2E4057;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #048A9;
+        }
+        
+        /* Shopping Cart Features */
+        .cart-features {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
+        .cart-summary {
+            font-size: 1.1rem;
+            color: #2E4057;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cart-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cart-btn {
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .checkout-btn {
+            background-color: #CF9455;
+            color: #2E4057;
+        }
+        
+        .clear-btn {
+            background-color: #048A9;
+            color: white;
+        }
+        
+        .process-btn {
+            background-color: #2E4057;
+            color: white;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #2E4057;
+            color: #F9E5CE;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section h3 {
+            color: #CF9455;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .book-collection {
+                order: 1;
+            }
+            
+            .cart-buttons {
+                flex-direction: column;
+            }
+            
+            .search-account {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav a {
+                margin: 0 0.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">📚 Book Haven Bookstore</div>
+        <div class="search-account">
+            <input type="text" class="search-bar" placeholder="Search books...">
+            <a href="#" class="cart">Cart (2)</a>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="homepage.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About Us</a>
+        <a href="events.html">Events</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <h1 class="page-title">Browse Our Collection</h1>
+        
+        <div class="gallery-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Categories</h3>
+                <a href="#" class="category-button">All Books</a>
+                <a href="#" class="category-button">Fiction</a>
+                <a href="#" class="category-button">Mystery</a>
+                <a href="#" class="category-button">Children's Books</a>
+                <a href="#" class="category-button">Rare Books</a>
+                
+                <div class="cart-section">
+                    <h3>Shopping Cart</h3>
+                    <a href="#cart" class="view-cart-btn">View Cart (2 items)</a>
+                </div>
+            </aside>
+            
+            <!-- Book Collection -->
+            <main class="book-collection">
+                <div class="book-item">
+                    <div class="book-cover">The Mystery of Blackwood Manor</div>
+                    <div class="book-title">The Mystery of Blackwood Manor</div>
+                    <div class="book-author">by Sarah Mitchell</div>
+                    <div class="book-description">A gripping mystery set in Victorian England where nothing is as it seems.</div>
+                    <div class="book-price">$24.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+                
+                <div class="book-item">
+                    <div class="book-cover">Literary Classics Collection</div>
+                    <div class="book-title">Great Expectations</div>
+                    <div class="book-author">by Charles Dickens</div>
+                    <div class="book-description">A timeless tale of growth, love, and redemption in Victorian London.</div>
+                    <div class="book-price">$19.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+                
+                <div class="book-item">
+                    <div class="book-cover">Children's Adventure Story</div>
+                    <div class="book-title">The Secret Garden Adventures</div>
+                    <div class="book-author">by Emma Thompson</div>
+                    <div class="book-description">A magical adventure story perfect for young readers aged 8-12.</div>
+                    <div class="book-price">$16.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+                
+                <div class="book-item">
+                    <div class="book-cover">Rare First Edition</div>
+                    <div class="book-title">To Kill a Mockingbird</div>
+                    <div class="book-author">by Harper Lee (First Edition)</div>
+                    <div class="book-description">A rare first edition of this American literary classic in excellent condition.</div>
+                    <div class="book-price">$199.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+                
+                <div class="book-item">
+                    <div class="book-cover">Modern Fiction</div>
+                    <div class="book-title">The Book Thief</div>
+                    <div class="book-author">by Markus Zusak</div>
+                    <div class="book-description">A powerful story narrated by Death during World War II.</div>
+                    <div class="book-price">$22.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+                
+                <div class="book-item">
+                    <div class="book-cover">Mystery Thriller</div>
+                    <div class="book-title">Gone Girl</div>
+                    <div class="book-author">by Gillian Flynn</div>
+                    <div class="book-description">A psychological thriller that will keep you guessing until the end.</div>
+                    <div class="book-price">$26.99</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Shopping Cart Features -->
+        <section class="cart-features" id="cart">
+            <div class="cart-summary">
+                <strong>Cart Summary:</strong> 2 items | Total: $49.98
+            </div>
+            <div class="cart-buttons">
+                <a href="#" class="cart-btn checkout-btn">Checkout</a>
+                <a href="#" class="cart-btn clear-btn">Clear Cart</a>
+                <a href="#" class="cart-btn process-btn">Process Order</a>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Store Hours</h3>
+                <p>Monday-Friday: 9AM-8PM<br>
+                Saturday-Sunday: 10AM-6PM</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>123 Literary Lane<br>
+                Phone: (555) 123-BOOK<br>
+                Email: info@bookhaven.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p>Facebook | Twitter | Instagram<br>
+                Newsletter Signup</p>
+            </div>
+        </div>
+        <p>&copy; 2024 Book Haven Bookstore. All rights reserved.</p>
+    </footer>
+</body>
+</html>
